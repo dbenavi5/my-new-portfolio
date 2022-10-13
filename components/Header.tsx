@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 type Props = {};
 
-export default function Header({ }: Props) {
+function Header({ }: Props) {
     return (
         <header className='sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center'>
             <motion.div
@@ -26,27 +26,27 @@ export default function Header({ }: Props) {
                 {/* Social Icons */}
                 <SocialIcon
                     url="https://linkedin.com/in/diana-c-benavides"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
                 <SocialIcon
                     url="https://github.com/dbenavi5"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
                 <SocialIcon
                     url="https://www.facebook.com/dbenavi5/"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
                 <SocialIcon
                     url="https://twitter.com/dianab_415"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
                 <SocialIcon
                     url="https://www.pinterest.com/dbenavidb/"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
             </motion.div>
@@ -69,11 +69,13 @@ export default function Header({ }: Props) {
                 <SocialIcon
                     className="cursor-pointer"
                     network="email"
-                    fgColor="gray"
+                    fgColor="#fbbf24"
                     bgColor="transparent"
                 />
-                <p className='uppercase hidden md:inline-flex text-sm text-gray-400'>Get in touch</p>
+                <p className='uppercase hidden md:inline-flex text-sm text-amber-400'>Get in touch</p>
             </motion.div>
         </header>
     );
 }
+
+export default Header;
