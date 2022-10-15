@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import ExPic from './assets/james-harrison-UVMPVIRCF5w-unsplash.jpg';
@@ -20,7 +19,7 @@ const Projects = (props: Props) => {
         Projects
       </h3>
 
-      <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20">
+      <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-track-amber-800/20 scrollbar-thumb-amber-400/80">
         {projects.map((project, i) => (
           <div
             key={project}
