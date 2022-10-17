@@ -44,13 +44,13 @@ const About = (props: Props) => {
           Hi there! My name is Diana and welcome to my portfolio. Here&apos;s a
           little about me... Born and raised in the beautiful city of San
           Francisco. I am first generation of my family to attend and achieve a
-          college degree in Computer Science at San Francisco State University.
-          Along my journey I discovered my passion for building fully functional
-          and responsive projects while also learning about new technologies. I
-          am always looking forward to work on new projects and I also enjoy
-          creating websites that is completetly user-friendly. I am a diligent
-          web developer with 4 years of experience in commercial web application
-          development.
+          bachelor&apos;s degree in Computer Science at San Francisco State
+          University. Along my journey I discovered my passion for building
+          fully functional and responsive projects while also learning about new
+          technologies. I am always looking forward to working on new projects
+          and I also enjoy creating websites that is completetly user-friendly.
+          I am a diligent web developer with 4 years of experience in commercial
+          web application development.
         </p>
       </div>
     </motion.div>
