@@ -1,10 +1,7 @@
-/* eslint-disable no-empty-pattern */
 import React from 'react'
 import { motion } from 'framer-motion'
 
-type Props = {}
-
-function BackgroundCircle({ }: Props) {
+function BackgroundCircle() {
     return (
         <motion.div
             initial={{

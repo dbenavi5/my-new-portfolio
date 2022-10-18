@@ -1,11 +1,13 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { motion } from 'framer-motion'
-import AboutPic from './assets/me.png'
+import { PageInfo } from '../typings'
+import { urlFor } from '../sanity'
 
-type Props = {}
+type Props = {
+  pageInfo: PageInfo
+}
 
-const About = (props: Props) => {
+const About = ({pageInfo}: Props) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,7 +33,7 @@ const About = (props: Props) => {
         }}
         viewport={{ once: true }}
         className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]"
-        src={AboutPic.src}
+        src={urlFor(pageInfo?.profilePic).url()}
         alt={""}
       />
       <div className="space-y-10 px-0 md:px-10">
@@ -41,16 +43,7 @@ const About = (props: Props) => {
           backgroud:
         </h4>
         <p className="text-base">
-          Hi there! My name is Diana and welcome to my portfolio. Here&apos;s a
-          little about me... Born and raised in the beautiful city of San
-          Francisco. I am first generation of my family to attend and achieve a
-          bachelor&apos;s degree in Computer Science at San Francisco State
-          University. Along my journey I discovered my passion for building
-          fully functional and responsive projects while also learning about new
-          technologies. I am always looking forward to working on new projects
-          and I also enjoy creating websites that is completetly user-friendly.
-          I am a diligent web developer with 4 years of experience in commercial
-          web application development.
+          {pageInfo?.backgroundInfo}
         </p>
       </div>
     </motion.div>

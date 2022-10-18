@@ -1,11 +1,14 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import { motion } from "framer-motion";
-import SfsuPic from './assets/altumcode-dMUt0X3f59Q-unsplash.jpg'
+import { Experiences } from '../typings';
+import { urlFor } from '../sanity';
 
-type Props = {}
+type Props = {
+  experience: Experiences,
+};
 
-const ExperienceCard = (props: Props) => {
+const ExperienceCard = ({experience}: Props) => {
   return (
     <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center p-10 bg-amber-800 hover:opacity-100 lg:opacity-40 cursor-pointer  transition-opacity duration-200 overflow-hidden">
       <motion.img
@@ -14,30 +17,34 @@ const ExperienceCard = (props: Props) => {
         transition={{ duration: 1.2 }}
         viewport={{ once: true }}
         className="w-32 h-32 rounded-full md:rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
-        src={SfsuPic.src}
+        src={urlFor(experience.companyImage).url()}
         alt=""
       />
 
       <div className="px-0 md:px-10">
-        <h4 className="text-4xl font-light">Backend Assistant</h4>
-        <p className="font-bold text-2xl mt-1">
-          San Francisco State University
-        </p>
+        <h4 className="text-4xl font-light">{experience?.jobTitle}</h4>
+        <p className="font-bold text-2xl mt-1">{experience?.company}</p>
         <div className="flex space-x-2 my-2">
-          {/* Tech used */}
-          {/* Tech used */}
-          {/* Tech used */}
+          {experience.technologies.map((technology) => (
+            <img
+              key={technology._id}
+              className="h-10 w-10 rounded-full"
+              src={urlFor(technology.image).url()}
+              alt={''}
+            />
+          ))}
         </div>
         <p className="uppercase py-5 text-amber-300">
-          Started work... - Ended...
+          {new Date(experience.dateStarted).toDateString()} -{" "}
+          {experience.isCurrentlyWorkingHere
+            ? "Present"
+            : new Date(experience.dateEnded).toDateString()}
         </p>
 
-        <ul className="list-disc space-y-4 ml-5 text-xl">
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
-          <li>Summary Points</li>
+        <ul className="list-disc space-y-4 ml-5 text-lg max-h-96 overflow-y-scroll scrollbar-thin scrollbar-track-amber-800/20 scrollbar-thumb-amber-400/80">
+          {experience.points.map((point,i) => (
+            <li key={i}>{point}</li>
+          ))}
         </ul>
       </div>
     </article>

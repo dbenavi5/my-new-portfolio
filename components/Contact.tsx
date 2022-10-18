@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
+import { PageInfo } from '../typings';
 
 type Inputs = {
     name: string,
@@ -10,9 +10,11 @@ type Inputs = {
     message: string,
 };
 
-type Props = {}
+type Props = {
+  pageInfo: PageInfo,
+}
 
-const Contact = (props: Props) => {
+const Contact = ({pageInfo}: Props) => {
 
     const { register, handleSubmit} = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
@@ -25,7 +27,7 @@ const Contact = (props: Props) => {
       </h3>
 
       <div className="flex flex-col space-y-10">
-        <h4 className="text-4xl font-semibold text-center">
+        <h4 className="text-2xl md:text-3xl xl:text-4xl font-semibold text-center">
           I{"'"}ve got what you need.{" "}
           <span className=" decoration-amber-100/50 underline">
             Let{"'"}s talk
@@ -35,15 +37,15 @@ const Contact = (props: Props) => {
         <div className="space-y-10">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-2xl">415-374-4519</p>
+            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.phoneNumber}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-2xl">dbenavides@mail.sfsu.edu</p>
+            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.email}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-2xl">San Francisco, CA</p>
+            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.address}</p>
           </div>
         </div>
 
