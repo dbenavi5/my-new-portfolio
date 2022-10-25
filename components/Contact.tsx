@@ -1,25 +1,54 @@
-import React from 'react'
-import { useForm, SubmitHandler } from "react-hook-form";
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
-import { PageInfo } from '../typings';
+import React, { useRef, useState } from "react";
+// import { useForm } from "react-hook-form";
+import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import { PageInfo } from "../typings";
+import emailjs from "@emailjs/browser";
 
-type Inputs = {
-    name: string,
-    email: string,
-    subject: string,
-    message: string,
-};
+// type Inputs = {
+//   name: string;
+//   email: string;
+//   subject: string;
+//   message: string;
+// };
 
 type Props = {
-  pageInfo: PageInfo,
-}
+  pageInfo: PageInfo;
+};
 
-const Contact = ({pageInfo}: Props) => {
+const Contact = ({ pageInfo }: Props) => {
+  const [name, setName]: any = useState('');
+  const [email, setEmail]: any = useState('');
+  const [subject, setSubject]: any = useState('');
+  const [message, setMessage]: any = useState('');
 
-    const { register, handleSubmit} = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (formData) => {
-      window.location.href =`mailto:dbenavides@mail.sfsu.edu?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`
+  const form: any = useRef();
+
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_l17dw8i",
+        "template_68s959l",
+        form.current,
+        "UCz3TzA4FliK-nYql"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+          e.target.reset();
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
+
+  // const { register } = useForm<Inputs>();
+  // const onSubmit: SubmitHandler<Inputs> = (formData) => {
+  //   window.location.href = `mailto:dbenavides@mail.sfsu.edu?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
+  // };
   return (
     <div className="h-screen relative flex flex-col text-center md:text-left md:flex-row max-w-7xl justify-evenly mx-auto items-center px-10">
       <h3 className="absolute top-24 uppercase tracking-[20px] text-amber-400 text-2xl">
@@ -37,46 +66,61 @@ const Contact = ({pageInfo}: Props) => {
         <div className="space-y-10">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.phoneNumber}</p>
+            <p className="text-lg md:text-xl xl:text-2xl">
+              {pageInfo.phoneNumber}
+            </p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.email}</p>
+            <p className="text-lg md:text-xl xl:text-2xl">{pageInfo.email}</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="text-amber-500 h-7 w-7 animate-pulse" />
-            <p className="text-lg md:text-xl xl:text-2xl">{ pageInfo.address}</p>
+            <p className="text-lg md:text-xl xl:text-2xl">{pageInfo.address}</p>
           </div>
         </div>
 
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          ref={form}
+          onSubmit={sendEmail}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
           <div className="flex space-x-2">
             <input
-              {...register("name")}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Name"
               className="customInput"
               type="text"
+              id='name'
+              name='name'
             />
             <input
-              {...register("email")}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="customInput"
               type="email"
+              id='email'
+              name='email'
             />
           </div>
           <input
-            {...register("subject")}
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             placeholder="Subject"
             className="customInput"
             type="text"
+            id='subject'
+            name='subject'
           />
           <textarea
-            {...register("message")}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="Message"
             className="customInput"
+            id='message'
+            name='message'
           />
           <button
             type="submit"
@@ -88,6 +132,6 @@ const Contact = ({pageInfo}: Props) => {
       </div>
     </div>
   );
-}
+};
 
-export default Contact
+export default Contact;

@@ -1,25 +1,25 @@
-import Image from 'next/image'
-import React from 'react'
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
-import BackgroundCircle from './BackgroundCircle'
-import Link from 'next/link'
-import { PageInfo } from '../typings'
-import { urlFor } from '../sanity'
+import Image from "next/image";
+import React from "react";
+import { Cursor, useTypewriter } from "react-simple-typewriter";
+import BackgroundCircle from "./BackgroundCircle";
+import Link from "next/link";
+import { PageInfo } from "../typings";
+import { urlFor } from "../sanity";
 
 type Props = {
-  pageInfo: PageInfo,
-}
+  pageInfo: PageInfo;
+};
 
-function Hero({pageInfo}: Props) {
+function Hero({ pageInfo }: Props) {
   const [text] = useTypewriter({
     words: [
       `Hi, My Name is ${pageInfo?.name}`,
-      'She-who-likes-to-eat.tsx',
-      '<ButLovesToCodeMore  />',
+      "She-who-likes-to-eat.tsx",
+      "<ButLovesToCodeMore  />",
     ],
     loop: true,
     delaySpeed: 2000,
-  })
+  });
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <BackgroundCircle />
@@ -28,12 +28,15 @@ function Hero({pageInfo}: Props) {
           priority
           className="absolute rounded-full"
           src={urlFor(pageInfo?.heroImage).url()}
-          alt={''}
+          alt={""}
           layout="fill"
           objectFit="cover"
+          sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
         />
       </div>
-      <div className='z-20'>
+      <div className="z-20">
         <h2 className="text-sm uppercase text-amber-500 pb-4 tracking-[15px]">
           {pageInfo?.role}
         </h2>
@@ -57,7 +60,7 @@ function Hero({pageInfo}: Props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;
