@@ -4,9 +4,10 @@ export { };
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            REACT_APP_SERVICE_ID: string;
-            REACT_APP_TEMPLATE_ID: string;
-            REACT_APP_PUBLIC_KEY: string;
+            EMAILJS_SERVICE_ID: string;
+            EMAILJS_TEMPLATE_ID: string;
+            EMAILJS_PUBLIC_KEY: string;
+            NEXT_PUBLIC_SANITY_PROJECT_ID: string;
         }
     }
 }
