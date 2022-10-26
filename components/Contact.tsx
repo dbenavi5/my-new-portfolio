@@ -16,10 +16,10 @@ type Props = {
 };
 
 const Contact = ({ pageInfo }: Props) => {
-  const [name, setName]: any = useState('');
-  const [email, setEmail]: any = useState('');
-  const [subject, setSubject]: any = useState('');
-  const [message, setMessage]: any = useState('');
+  const [name, setName]: any = useState("");
+  const [email, setEmail]: any = useState("");
+  const [subject, setSubject]: any = useState("");
+  const [message, setMessage]: any = useState("");
 
   const form: any = useRef();
 
@@ -28,10 +28,10 @@ const Contact = ({ pageInfo }: Props) => {
 
     emailjs
       .sendForm(
-        "service_l17dw8i",
-        "template_68s959l",
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
         form.current,
-        "UCz3TzA4FliK-nYql"
+        process.env.REACT_APP_PUBLIC_KEY
       )
       .then(
         (result) => {
@@ -92,8 +92,8 @@ const Contact = ({ pageInfo }: Props) => {
               placeholder="Name"
               className="customInput"
               type="text"
-              id='name'
-              name='name'
+              id="name"
+              name="name"
             />
             <input
               value={email}
@@ -101,8 +101,8 @@ const Contact = ({ pageInfo }: Props) => {
               placeholder="Email"
               className="customInput"
               type="email"
-              id='email'
-              name='email'
+              id="email"
+              name="email"
             />
           </div>
           <input
@@ -111,16 +111,16 @@ const Contact = ({ pageInfo }: Props) => {
             placeholder="Subject"
             className="customInput"
             type="text"
-            id='subject'
-            name='subject'
+            id="subject"
+            name="subject"
           />
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Message"
             className="customInput"
-            id='message'
-            name='message'
+            id="message"
+            name="message"
           />
           <button
             type="submit"
