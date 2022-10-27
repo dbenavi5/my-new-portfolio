@@ -1,30 +1,30 @@
-import type { GetStaticProps } from 'next'
-import Head from 'next/head'
-import About from '../components/About'
-import Contact from '../components/Contact'
-import Experience from '../components/Experience'
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import Projects from '../components/Projects'
-import Skills from '../components/Skills'
-import { ArrowUpTrayIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link'
-import { Experiences, PageInfo, Project, SkillSet, Social } from '../typings'
-import { fetchPageInfo } from '../utils/fetchPageInfo'
-import { fetchSocials } from '../utils/fetchSocials'
-import { fetchExperience } from '../utils/fetchExperiences'
-import { fetchSkills } from '../utils/fetchSkills'
-import { fetchProjects } from '../utils/fetchProjects'
+import type { GetStaticProps } from "next";
+import Head from "next/head";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Experience from "../components/Experience";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import Projects from "../components/Projects";
+import Skills from "../components/Skills";
+import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+import { Experiences, PageInfo, Project, SkillSet, Social } from "../typings";
+import { fetchPageInfo } from "../utils/fetchPageInfo";
+import { fetchSocials } from "../utils/fetchSocials";
+import { fetchExperience } from "../utils/fetchExperiences";
+import { fetchSkills } from "../utils/fetchSkills";
+import { fetchProjects } from "../utils/fetchProjects";
 
 type Props = {
-  pageInfo: PageInfo,
-  experiences: Experiences[],
-  skills: SkillSet[],
-  projects: Project[],
-  socials: Social[],
-}
+  pageInfo: PageInfo;
+  experiences: Experiences[];
+  skills: SkillSet[];
+  projects: Project[];
+  socials: Social[];
+};
 
-const Home = ({ pageInfo, socials, experiences, skills, projects}: Props) => {
+const Home = ({ pageInfo, socials, experiences, skills, projects }: Props) => {
   return (
     <div className="bg-[#78350f] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-amber-800/20 scrollbar-thumb-amber-400/80">
       <Head>
@@ -41,7 +41,7 @@ const Home = ({ pageInfo, socials, experiences, skills, projects}: Props) => {
         <About pageInfo={pageInfo} />
       </section>
       <section id="experience" className="snap-center">
-        <Experience experiences={ experiences} />
+        <Experience experiences={experiences} />
       </section>
       <section id="skills" className="snap-start">
         <Skills skills={skills} />
@@ -85,4 +85,4 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       projects,
     },
   };
-}
+};

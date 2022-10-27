@@ -4,13 +4,6 @@ import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { PageInfo } from "../typings";
 import emailjs from "@emailjs/browser";
 
-// type Inputs = {
-//   name: string;
-//   email: string;
-//   subject: string;
-//   message: string;
-// };
-
 type Props = {
   pageInfo: PageInfo;
 };
@@ -25,13 +18,12 @@ const Contact = ({ pageInfo }: Props) => {
 
   const sendEmail = (e: any) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
-        process.env.EMAILJS_SERVICE_ID,
-        process.env.EMAILJS_TEMPLATE_ID,
+        process.env.NEXT_PUBLIC_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID!,
         form.current,
-        process.env.EMAILJS_PUBLIC_KEY
+        process.env.NEXT_PUBLIC_KEY!
       )
       .then(
         (result) => {
@@ -94,6 +86,7 @@ const Contact = ({ pageInfo }: Props) => {
               type="text"
               id="name"
               name="name"
+              required
             />
             <input
               value={email}
@@ -103,6 +96,7 @@ const Contact = ({ pageInfo }: Props) => {
               type="email"
               id="email"
               name="email"
+              required
             />
           </div>
           <input
@@ -113,6 +107,7 @@ const Contact = ({ pageInfo }: Props) => {
             type="text"
             id="subject"
             name="subject"
+            required
           />
           <textarea
             value={message}
@@ -121,6 +116,7 @@ const Contact = ({ pageInfo }: Props) => {
             className="customInput"
             id="message"
             name="message"
+            required
           />
           <button
             type="submit"
